@@ -1,6 +1,34 @@
+import json
+import time
+
 from components.voice_processing import command
-from components.promt_processing import answerGPT
+from components.promt_processing import console_chat
 from components.audio_processing import speechAudio
+
+def writejson(chat_history, audioUrl):
+    print("chat_history:", chat_history)
+    
+    for message in chat_history:
+        print("Тип данных content:", type(message["content"]))
+
+    unx_time = int(time.time())
+
+    # Извлекаем нужные данные из chat_history (предполагаем, что это список)
+    chat_data = [
+        {"role": message["role"], "content": message["content"]} 
+        for message in chat_history
+    ]
+
+    result_form = {
+        "title": unx_time,
+        "chat": chat_data,
+        "audioUrl": audioUrl if audioUrl else None 
+    }
+
+    with open(f".\data\json\{unx_time}.json", 'w', encoding="utf-8") as file:
+        json.dump(result_form, file, indent=4, ensure_ascii=False)
+    
+    print(result_form)
 
 def main():
     print('''Выберите принцип работы:
@@ -40,10 +68,15 @@ def main():
     else:
         promt = command()
 
-    text = answerGPT(promt)
+    chat_history = console_chat(promt)
 
     if answer == 1:
-        speechAudio(text)
+        audio = speechAudio(chat_history)
+    else:
+        audio = None
+
+    writejson(chat_history, audio)
 
 if __name__ == "__main__":
     main()
+    

@@ -24,9 +24,6 @@ def speechAudio(textAI):
     result = json.loads(response.text)
     unx_time = int(time.time())
 
-    with open(f'.\data\json\{unx_time}.json', 'w') as file:
-        json.dump(result, file , indent=4, ensure_ascii=False)
-
     audio_url = result.get('openai').get('audio_resource_url')
     r = requests.get(audio_url)
 
@@ -34,3 +31,5 @@ def speechAudio(textAI):
         file.write(r.content)
 
     playsound(f'.\data\media\{unx_time}.mp3')
+    audio_result = r.url
+    return audio_result

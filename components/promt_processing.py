@@ -1,16 +1,21 @@
 from g4f.client import Client
 
-def answerGPT(promt):
+def console_chat(promt:str)->str:
     client = Client()
-    response = client.chat.completions.create(
-        model="gpt-3.5-turbo",
-        messages=[{"role": "user", "content": promt}],
-        stream=True
-    )
+    conversation_history = []
+    while True:
+        conversation_history.append({"role": "user", "content": promt})
+        try:
+            response = client.chat.completions.create(
+                model='gpt-3.5-turbo',
+                messages=conversation_history,
+            )
+            # Извлекаем текст ответа 
+            bot_response_text = response.choices[0].message.content 
+        except Exception as e:
+            print(f"erors:", e)
+            bot_response_text = "Извините, произошла ошибка."
 
-    full_text = "" 
-    for chunk in response:
-        if chunk.choices[0].delta.content:
-            full_text += chunk.choices[0].delta.content
-            print(full_text)
-    return full_text
+        conversation_history.append({"role": "assistant", "content": bot_response_text})
+        print(bot_response_text)
+        return conversation_history
