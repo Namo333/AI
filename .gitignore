@@ -1,2 +1,5 @@
 venv/*
 .env
+components/__pycache__/promt_processing.cpython-310.pyc
+components/__pycache__/voice_processing.cpython-310.pyc
+
