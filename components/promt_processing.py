@@ -11,5 +11,6 @@ def answerGPT(promt):
     full_text = "" 
     for chunk in response:
         if chunk.choices[0].delta.content:
-            full_text += chunk.choices[0].delta.content 
+            full_text += chunk.choices[0].delta.content
+            print(full_text)
     return full_text

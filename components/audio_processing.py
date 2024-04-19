@@ -15,8 +15,8 @@ def speechAudoi(textAI):
     payload = {
         'providers': 'openai',
         'language': 'ru',
-        'option': 'MALE',
-        'openai': 'ru_alloy',
+        'option': 'FEMALE',
+        'openai': 'en_shimmer',
         'text': f'{textAI}',
     }
 
