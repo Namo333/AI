@@ -8,7 +8,7 @@ from dotenv import load_dotenv
 load_dotenv()
 token = os.getenv("TOKEN")
 
-def speechAudoi(textAI):
+def speechAudio(textAI):
     headers = {"Authorization": f"Bearer {token}"}
     url="https://api.edenai.run/v2/audio/text_to_speech"
 
