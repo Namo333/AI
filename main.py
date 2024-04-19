@@ -3,13 +3,11 @@ from dotenv import load_dotenv
 
 from components.voice_processing import command
 from components.promt_processing import answerGPT
-
-# load_dotenv()
-# TOKEN = os.getenv("TOKEN")
+from components.audio_processing import speechAudoi
 
 def main():
     promt = command()
-    answerGPT(promt)
-
+    text = answerGPT(promt)
+    speechAudoi(text)
 if __name__ == "__main__":
     main()
