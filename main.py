@@ -3,9 +3,11 @@ from components.promt_processing import answerGPT
 from components.audio_processing import speechAudio
 
 def main():
-    print("Выберите принцип работы:")
-    print("1. Озвучить ответ")
-    print("2. Не озвучивать ответ")
+    print('''Выберите принцип работы:
+          
+    1. Озвучить ответ
+    2. Не озвучивать ответ
+    ''')
     
     while True:
         try:
@@ -17,9 +19,11 @@ def main():
         except ValueError:
             print("Пожалуйста, введите число.")
 
-    print("Выберите способ ввода промта:")
-    print("1. Написать текст вручную")
-    print("2. Произнести промт словами")
+    print('''Выберите способ ввода промта:
+          
+    1. Написать текст вручную
+    2. Произнести промт словами
+    ''')
 
     while True:
         try:
