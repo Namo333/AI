@@ -1,13 +1,12 @@
-// import { useState } from 'react'
+import React from 'react';
+import Chatbot from './components/Chatbot';
 
-function App() {
+const App = () => {
   return (
-    <>
-      <h1 className="text-3xl font-bold underline">
-        Hello world!
-      </h1>
-    </>
-  )
+    <section>
+      <Chatbot />
+    </section>
+  );
 }
 
-export default App
+export default App;
